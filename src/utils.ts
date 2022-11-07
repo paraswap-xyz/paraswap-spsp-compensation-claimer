@@ -1,6 +1,6 @@
-const formatter = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 3 });
+export const formatNumber = (num: number, maximumFractionDigits = 3) => {
+  const formatter = new Intl.NumberFormat("en-EN", { maximumFractionDigits });
 
-export const formatNumber = (num: number) => {
   return formatter.format(num);
 };
 

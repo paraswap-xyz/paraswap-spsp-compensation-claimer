@@ -39,3 +39,31 @@
 .read-the-docs {
   color: #888;
 }
+
+.address {
+  color: rgb(110 147 218);
+}
+
+.error {
+  color: red;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 40px;
+}
+
+h4 {
+  font-size: 30px;
+}
+
+.success {
+  color: green;
+}
+
+.info {
+  color: rgb(121, 121, 234);
+}
