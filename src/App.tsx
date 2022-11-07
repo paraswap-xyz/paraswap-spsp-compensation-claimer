@@ -23,7 +23,7 @@ function App() {
           className="error"
           style={{ display: "flex", alignItems: "center", columnGap: 10 }}
         >
-          Wrong network please switch to {supportedChain?.name}{" "}
+          Connected to wrong chain please switch to {supportedChain?.name}{" "}
           <button
             style={{ fontSize: 20, backgroundColor: "white", color: "red" }}
             onClick={() => switchNetwork?.(supportedChainId)}
