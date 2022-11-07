@@ -19,6 +19,7 @@ export default function WalletConnect() {
     <div style={{ display: "flex", columnGap: 10, justifyContent: "center" }}>
       {connectors.map((connector) => (
         <button
+          className="wallet"
           disabled={!connector.ready}
           key={connector.id}
           onClick={() => connect({ connector })}
