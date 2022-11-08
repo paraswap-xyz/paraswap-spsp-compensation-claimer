@@ -9,11 +9,12 @@ import { FullClaimData, HexData, UserClaimData } from "./types";
 import MerkleDistributorABI from "./MerkleDistributorABI";
 import { BigNumber } from "ethers";
 import config from "./config";
+import { fetchDataOnIpfs } from "./utils";
 
 const useConfig = () => {
   const { chain } = useNetwork();
   return useMemo(() => {
-    if (!chain) return { url: undefined, claimer: undefined };
+    if (!chain) return { claimer: undefined, ipfsHash: undefined };
     return config[chain.id];
   }, [config, chain]);
 };
@@ -27,15 +28,15 @@ export const useClaimData = (): ClaimDataState => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<FullClaimData | null>(null);
   const [error, setError] = useState<Error>();
-  const { url } = useConfig();
+  const { ipfsHash } = useConfig();
 
   useEffect(() => {
     async function fetchData() {
-      if (!url) return;
+      if (!ipfsHash) return;
 
       try {
         setIsLoading(true);
-        const data = (await (await fetch(url)).json()) as FullClaimData;
+        const data = (await fetchDataOnIpfs(ipfsHash)) as FullClaimData;
         setIsLoading(false);
         setData(data);
       } catch (e) {
@@ -46,7 +47,7 @@ export const useClaimData = (): ClaimDataState => {
     }
 
     fetchData();
-  }, [url]);
+  }, [ipfsHash]);
 
   return {
     isLoading,

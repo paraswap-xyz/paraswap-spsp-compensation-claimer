@@ -1,6 +1,6 @@
 export type HexData = `0x{string}`;
 export type Config = {
-  [chainId: number]: { claimer: string; url: string };
+  [chainId: number]: { claimer: string; ipfsHash: string };
 };
 
 export type UserClaimData = {
