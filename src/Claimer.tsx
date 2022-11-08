@@ -78,7 +78,9 @@ function Claimer() {
       {claim.data?.hash && (
         <h4>
           Follow transaction status on etherscan:{" "}
-          <a href={constructTxExplorerLink(claim.data.hash)}>link</a>
+          <a href={constructTxExplorerLink(claim.data.hash)} target="_blank">
+            link
+          </a>
         </h4>
       )}
       <div>
@@ -106,6 +108,7 @@ function Claimer() {
             <a
               href={constructBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
               className="info"
+              target="_blank"
             >
               {claimData.data.BLOCK_NUMBER}
             </a>
@@ -155,6 +158,7 @@ function Claimer() {
             <a
               href={constructBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
               className="info"
+              target="_blank"
             >
               {claimData.data.BLOCK_NUMBER}
             </a>
