@@ -1,7 +1,7 @@
 import "./App.css";
 import { useAccount, useEnsName } from "wagmi";
 import {
-  useBlockExplorerTxLink,
+  useBlockExploreLinkConstructors,
   useClaim,
   useClaimData,
   useIsClaimed,
@@ -20,7 +20,8 @@ function Claimer() {
     );
   }, [claimData.data, address]);
   const claim = useClaim(userClaimData);
-  const txLink = useBlockExplorerTxLink(claim.data?.hash);
+  const { getTxExplorerLink, getBlockExplorerLink } =
+    useBlockExploreLinkConstructors();
   const isClaimedData = useIsClaimed(userClaimData?.index);
 
   if (claimData.isLoading || isClaimedData.isLoading)
@@ -74,9 +75,10 @@ function Claimer() {
           ? "Claimed"
           : "Claim"}
       </button>
-      {txLink && (
+      {claim.data?.hash && (
         <h4>
-          Follow transaction status on etherscan: <a href={txLink}>link</a>
+          Follow transaction status on etherscan:{" "}
+          <a href={getTxExplorerLink(claim.data.hash)}>link</a>
         </h4>
       )}
       <div>
@@ -101,7 +103,12 @@ function Claimer() {
               PSP
             </span>{" "}
             staked in sPSP4 at block{" "}
-            <span className="info">{claimData.data.BLOCK_NUMBER}</span>
+            <a
+              href={getBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
+              className="info"
+            >
+              {claimData.data.BLOCK_NUMBER}
+            </a>
           </h4>
         )}
 
@@ -145,7 +152,12 @@ function Claimer() {
               PSP
             </span>{" "}
             staked in sPSP10 at block{" "}
-            <span className="info">{claimData.data.BLOCK_NUMBER}</span>
+            <a
+              href={getBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
+              className="info"
+            >
+              {claimData.data.BLOCK_NUMBER}
+            </a>
           </h4>
         )}
       </div>

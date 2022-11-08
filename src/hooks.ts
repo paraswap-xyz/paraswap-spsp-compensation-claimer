@@ -105,3 +105,22 @@ export const useBlockExplorerTxLink = (txHash?: string) => {
     return `${chain.blockExplorers.etherscan.url}/tx/${txHash}`;
   }, [txHash]);
 };
+
+export const useBlockExploreLinkConstructors = () => {
+  const { chain } = useNetwork();
+
+  return useMemo(() => {
+    const baseUrl = chain?.blockExplorers?.etherscan?.url;
+
+    return {
+      getTxExplorerLink: (txHash: string) => {
+        if (!baseUrl) return;
+        return `${baseUrl}/tx/${txHash}`;
+      },
+      getBlockExplorerLink: (blockNumOrHash: string | number) => {
+        if (!baseUrl) return;
+        return `${baseUrl}/block/${blockNumOrHash}`;
+      },
+    };
+  }, [chain]);
+};
