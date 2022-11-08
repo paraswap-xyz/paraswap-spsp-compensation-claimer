@@ -87,3 +87,11 @@ export const useClaim = (claimData?: UserClaimData) => {
 
   return { data, isError, isLoading, write };
 };
+
+export const useBlockExplorerTxLink = (txHash?: string) => {
+  const { chain } = useNetwork();
+  return useMemo(() => {
+    if (!txHash || !chain?.blockExplorers?.etherscan) return;
+    return `${chain.blockExplorers.etherscan.url}/tx/${txHash}`;
+  }, [txHash]);
+};

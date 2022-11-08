@@ -1,6 +1,11 @@
 import "./App.css";
 import { useAccount, useEnsName } from "wagmi";
-import { useClaim, useClaimData, useIsClaimed } from "./hooks";
+import {
+  useBlockExplorerTxLink,
+  useClaim,
+  useClaimData,
+  useIsClaimed,
+} from "./hooks";
 import { useMemo } from "react";
 import { formatNumber, normalize } from "./utils";
 
@@ -8,16 +13,14 @@ function Claimer() {
   const { address } = useAccount();
   const { data: ensName } = useEnsName({ address });
   const { data: globalClaimData, error: fetchError } = useClaimData();
-
   const userClaimData = useMemo(() => {
     if (!globalClaimData || !address) return;
-
     return globalClaimData.REWARDS_BY_STAKER.find(
       (s) => s.address == address.toLowerCase()
     );
   }, [globalClaimData, address]);
   const claim = useClaim(userClaimData);
-
+  const txLink = useBlockExplorerTxLink(claim.data?.hash);
   const isClaimedData = useIsClaimed(userClaimData?.index);
 
   if (!globalClaimData || fetchError) {
@@ -57,19 +60,22 @@ function Claimer() {
           {formatNumber(normalize(userClaimData.rewards))} PSP
         </span>
       </h2>
-      <div>
-        {isClaimedData.isLoading ? (
-          <div>checking if claimed....</div>
-        ) : isClaimedData.data ? (
-          <div className="error">already claimed</div>
-        ) : (
-          <div>
-            <button className="claimButton" disabled={!claim.write} onClick={() => claim.write?.()}>
-              {claim.isLoading ? 'Claiming...': 'Claim'}
-            </button>
-          </div>
-        )}
-      </div>
+      <button
+        className="claimButton"
+        disabled={!claim.write || isClaimedData.data}
+        onClick={() => claim.write?.()}
+      >
+        {claim.isLoading
+          ? "Claiming..."
+          : isClaimedData.data
+          ? "Claimed"
+          : "Claim"}
+      </button>
+      {txLink && (
+        <h4>
+          Follow transaction status on etherscan: <a href={txLink}>link</a>
+        </h4>
+      )}
       <div>
         <hr className="separator"></hr>
         {hasBoth && (
@@ -91,7 +97,8 @@ function Claimer() {
               )}{" "}
               PSP
             </span>{" "}
-            staked in sPSP4 at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
+            staked in sPSP4 at block{" "}
+            <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
           </h4>
         )}
 
@@ -134,7 +141,8 @@ function Claimer() {
               )}{" "}
               PSP
             </span>{" "}
-            staked in sPSP10 at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
+            staked in sPSP10 at block{" "}
+            <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
           </h4>
         )}
       </div>
