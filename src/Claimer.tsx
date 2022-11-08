@@ -23,12 +23,14 @@ function Claimer() {
   const txLink = useBlockExplorerTxLink(claim.data?.hash);
   const isClaimedData = useIsClaimed(userClaimData?.index);
 
-  if (!globalClaimData || fetchError) {
+  if (!globalClaimData) return <h3>Loading snapshot data from IPFS...</h3>;
+
+  if (fetchError) {
     return (
-      <div>
-        <div>An error happened could not fetch data</div>
-        {(fetchError && <div>Error: {fetchError.message}</div>) || <></>}
-      </div>
+      <h3>
+        <span>An error happened could not fetch data</span>
+        <span>Error: {fetchError.message}</span>
+      </h3>
     );
   }
 
@@ -36,12 +38,12 @@ function Claimer() {
 
   if (!userClaimData) {
     return (
-      <h1>
+      <h2>
         <span className="address">{address}</span> had{" "}
         <span className="error">0</span> PSP staked in block{" "}
         {globalClaimData.BLOCK_NUMBER} neither on ParaSwapPool4 (Apwine
         included) nor ParaSwapPool10
-      </h1>
+      </h2>
     );
   }
 
