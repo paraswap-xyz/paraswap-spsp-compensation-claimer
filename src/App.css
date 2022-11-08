@@ -3,17 +3,22 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  overflow: hidden;
+}
+
+h1,h2,h3,h4 {
+  word-wrap: break-word;
+  line-height: 1.1;
 }
 
 /* Titles */
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 45px;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 45px;
 }
 
 h3 {
@@ -85,4 +90,9 @@ button:focus-visible {
 
 .claimButton {
   background-color: #408347;
+}
+
+.separator {
+  border-color: grey;
+  margin: 50px 0;
 }

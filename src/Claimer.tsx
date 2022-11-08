@@ -70,10 +70,8 @@ function Claimer() {
           </div>
         )}
       </div>
-      <h3>
-        At block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
-      </h3>
       <div>
+        <hr className="separator"></hr>
         {hasBoth && (
           <h3>
             <span className="info">
@@ -93,7 +91,7 @@ function Claimer() {
               )}{" "}
               PSP
             </span>{" "}
-            staked
+            staked at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
           </h4>
         )}
 
@@ -136,7 +134,7 @@ function Claimer() {
               )}{" "}
               PSP
             </span>{" "}
-            staked
+            staked at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
           </h4>
         )}
       </div>
