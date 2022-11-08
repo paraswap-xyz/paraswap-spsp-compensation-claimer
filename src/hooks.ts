@@ -5,7 +5,7 @@ import {
   usePrepareContractWrite,
   useNetwork,
 } from "wagmi";
-import { GlobalClaimData, HexData, UserClaimData } from "./types";
+import { FullClaimData, HexData, UserClaimData } from "./types";
 import MerkleDistributorABI from "./MerkleDistributorABI";
 import { BigNumber } from "ethers";
 import config from "./config";
@@ -18,8 +18,14 @@ const useConfig = () => {
   }, [config, chain]);
 };
 
-export const useClaimData = () => {
-  const [data, setData] = useState<GlobalClaimData | null>(null);
+type ClaimDataState =
+  | { isLoading: true; data: null; error: undefined }
+  | { isLoading: false; data: FullClaimData; error: undefined }
+  | { isLoading: false; data: null; error: Error };
+
+export const useClaimData = (): ClaimDataState => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<FullClaimData | null>(null);
   const [error, setError] = useState<Error>();
   const { url } = useConfig();
 
@@ -28,10 +34,13 @@ export const useClaimData = () => {
       if (!url) return;
 
       try {
-        const data = (await (await fetch(url)).json()) as GlobalClaimData;
+        setIsLoading(true);
+        const data = (await (await fetch(url)).json()) as FullClaimData;
+        setIsLoading(false);
         setData(data);
       } catch (e) {
         setData(null);
+        setIsLoading(false);
         setError(e as Error);
       }
     }
@@ -40,9 +49,10 @@ export const useClaimData = () => {
   }, [url]);
 
   return {
+    isLoading,
     data,
     error,
-  };
+  } as ClaimDataState;
 };
 
 export const useIsClaimed = (index?: number) => {

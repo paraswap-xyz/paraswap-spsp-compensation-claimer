@@ -24,12 +24,15 @@ export type UserClaimData = {
   };
 };
 
-export type GlobalClaimData = {
+type GlobalClaimData = {
   BLOCK_NUMBER: number;
   TOTAL_PRECISE_REWARDS: string;
   TARGET_TOTAL_REWARDS_SPSP4: string;
   TARGET_TOTAL_REWARDS_SPSP10: string;
   TOTAL_PSP_STAKED_IN_SPSP4: string;
   TOTAL_PSP_STAKED_IN_SPSP10: string;
+};
+
+export type FullClaimData = GlobalClaimData & {
   REWARDS_BY_STAKER: UserClaimData[];
 };

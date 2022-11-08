@@ -12,24 +12,25 @@ import { formatNumber, normalize } from "./utils";
 function Claimer() {
   const { address } = useAccount();
   const { data: ensName } = useEnsName({ address });
-  const { data: globalClaimData, error: fetchError } = useClaimData();
+  const claimData = useClaimData();
   const userClaimData = useMemo(() => {
-    if (!globalClaimData || !address) return;
-    return globalClaimData.REWARDS_BY_STAKER.find(
+    if (!claimData.data || !address) return;
+    return claimData.data.REWARDS_BY_STAKER.find(
       (s) => s.address == address.toLowerCase()
     );
-  }, [globalClaimData, address]);
+  }, [claimData.data, address]);
   const claim = useClaim(userClaimData);
   const txLink = useBlockExplorerTxLink(claim.data?.hash);
   const isClaimedData = useIsClaimed(userClaimData?.index);
 
-  if (!globalClaimData) return <h3>Loading snapshot data from IPFS...</h3>;
+  if (claimData.isLoading || isClaimedData.isLoading)
+    return <h3>Loading data...</h3>;
 
-  if (fetchError) {
+  if (claimData.error) {
     return (
       <h3>
         <span>An error happened could not fetch data</span>
-        <span>Error: {fetchError.message}</span>
+        <span>Error: {claimData.error.message}</span>
       </h3>
     );
   }
@@ -41,8 +42,8 @@ function Claimer() {
       <h2>
         <span className="address">{address}</span> had{" "}
         <span className="error">0</span> PSP staked in block{" "}
-        {globalClaimData.BLOCK_NUMBER} neither on ParaSwapPool4 (Apwine
-        included) nor ParaSwapPool10
+        {claimData.data.BLOCK_NUMBER} neither on ParaSwapPool4 (Apwine included)
+        nor ParaSwapPool10
       </h2>
     );
   }
@@ -100,7 +101,7 @@ function Claimer() {
               PSP
             </span>{" "}
             staked in sPSP4 at block{" "}
-            <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
+            <span className="info">{claimData.data.BLOCK_NUMBER}</span>
           </h4>
         )}
 
@@ -144,7 +145,7 @@ function Claimer() {
               PSP
             </span>{" "}
             staked in sPSP10 at block{" "}
-            <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
+            <span className="info">{claimData.data.BLOCK_NUMBER}</span>
           </h4>
         )}
       </div>
