@@ -5,7 +5,7 @@ Voted snapshot proposal: https://vote.paraswap.network/#/proposal/0x3850c6c5032d
 
 
 ## Construction of merkle tree
-Data have been computed by script in [script/computeRewardsCompensations.js](https://github.com/paraswap/paraswap-spsp-compensation-claimer/blob/master/scripts/computeRewardsCompensations.ts) by rigousely respecting proposal up.
+Data have been computed by script in [script/computeRewardsCompensations.js](https://github.com/paraswap/paraswap-spsp-compensation-claimer/blob/master/scripts/computeRewardsCompensations.ts) by rigorously respecting proposal up.
 
 Inputs were computed from different standalone codes. The data should be verifiable onchain at designated block 15712957
 see
