@@ -112,3 +112,16 @@ button:focus-visible {
   border-color: grey;
   margin: 50px 0;
 }
+
+.switchNetworkContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  color: red;
+}
+
+.switchNetworkButton {
+  font-size: 20px;
+  background-color: white;
+  color: red;
+}

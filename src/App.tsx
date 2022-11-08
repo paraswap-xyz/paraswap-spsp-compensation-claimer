@@ -19,17 +19,16 @@ function App() {
           <WalletConnect />
         </>
       ) : chain?.id != supportedChainId ? (
-        <h3
-          className="error"
-          style={{ display: "flex", alignItems: "center", columnGap: 10 }}
-        >
+        <h3 className="switchNetworkContainer">
           Connected to wrong chain please switch to {supportedChain?.name}{" "}
-          <button
-            style={{ fontSize: 20, backgroundColor: "white", color: "red" }}
-            onClick={() => switchNetwork?.(supportedChainId)}
-          >
-            switch
-          </button>
+          {switchNetwork && (
+            <button
+              className="switchNetworkButton"
+              onClick={() => switchNetwork(supportedChainId)}
+            >
+              switch
+            </button>
+          )}
         </h3>
       ) : (
         <Claimer />

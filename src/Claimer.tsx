@@ -35,7 +35,7 @@ function Claimer() {
     );
   }
 
-  if (!address) return <div>address not connected</div>;
+  if (!address) return <h3>address not connected</h3>;
 
   if (!userClaimData) {
     return (
