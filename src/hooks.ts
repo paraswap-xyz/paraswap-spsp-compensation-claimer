@@ -69,6 +69,7 @@ export const useIsClaimed = (index?: number) => {
     functionName: "isClaimed",
     args,
     enabled: !!args && !!claimer,
+    watch: true
   });
 
   return { data, isError, isLoading };
