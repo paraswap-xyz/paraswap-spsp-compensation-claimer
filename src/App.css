@@ -82,3 +82,7 @@ button:focus-visible {
 .wallet:last-child {
   background-color: rgb(52, 52, 209);
 }
+
+.claimButton {
+  background-color: #408347;
+}

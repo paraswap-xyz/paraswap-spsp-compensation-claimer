@@ -16,7 +16,7 @@ function Claimer() {
       (s) => s.address == address.toLowerCase()
     );
   }, [globalClaimData, address]);
-  const { write } = useClaim(userClaimData);
+  const claim = useClaim(userClaimData);
 
   const isClaimedData = useIsClaimed(userClaimData?.index);
 
@@ -61,11 +61,11 @@ function Claimer() {
         {isClaimedData.isLoading ? (
           <div>checking if claimed....</div>
         ) : isClaimedData.data ? (
-          <div className="error">already claimed </div>
+          <div className="error">already claimed</div>
         ) : (
           <div>
-            <button disabled={!write} onClick={() => write?.()}>
-              Claim
+            <button className="claimButton" disabled={!claim.write} onClick={() => claim.write?.()}>
+              {claim.isLoading ? 'Claiming...': 'Claim'}
             </button>
           </div>
         )}
