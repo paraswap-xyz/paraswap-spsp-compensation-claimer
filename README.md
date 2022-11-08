@@ -9,7 +9,9 @@ Data have been computed by script in [script/computeRewardsCompensations.js](htt
 
 Inputs were computed from different standalone codes. The data should be verifiable onchain at designated block 15712957
 see
+
 -> [spsps_snapshot_15712957.json](https://github.com/paraswap/paraswap-spsp-compensation-claimer/blob/master/scripts/spsps_snapshot_15712957.json)
+
 -> [apwine_snapshot_15712957.csv](https://github.com/paraswap/paraswap-spsp-compensation-claimer/blob/master/scripts/apwine_snapshot_15712957.csv)
 
 The output has been pushed to ipfs with hash **QmX8CWo43RD5gY85kb96GWSkPF8A6FbPxTJWmZGxYCqC4H**.
