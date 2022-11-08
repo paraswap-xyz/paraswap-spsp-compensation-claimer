@@ -3,7 +3,7 @@ import "./App.css";
 import Claimer from "./Claimer";
 import WalletConnect from "./WalletConnect";
 
-const supportedChainId = 5;
+const supportedChainId = 1;
 
 function App() {
   const { isConnected } = useAccount();
