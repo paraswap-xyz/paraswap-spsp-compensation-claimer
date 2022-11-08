@@ -16,20 +16,21 @@ export default function WalletConnect() {
   }
 
   return (
-    <div style={{ display: "flex", columnGap: 10, justifyContent: "center" }}>
-      {connectors.map((connector) => (
-        <button
-          className="wallet"
-          disabled={!connector.ready}
-          key={connector.id}
-          onClick={() => connect({ connector })}
-        >
-          {connector.name}
-          {isLoading &&
-            pendingConnector?.id === connector.id &&
-            " (connecting)"}
-        </button>
-      ))}
+    <div className="wallets-container">
+      {connectors
+        .filter((connector) => connector.ready)
+        .map((connector) => (
+          <button
+            className="wallet"
+            key={connector.id}
+            onClick={() => connect({ connector })}
+          >
+            {connector.name}
+            {isLoading &&
+              pendingConnector?.id === connector.id &&
+              " (connecting)"}
+          </button>
+        ))}
     </div>
   );
 }

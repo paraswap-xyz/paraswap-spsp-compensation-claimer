@@ -83,6 +83,19 @@ button:focus-visible {
   color: rgb(110 147 218);
 }
 
+.wallets-container {
+  display: flex;
+  column-gap: 10px;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .wallets-container {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}
+
 .wallet:first-child {
   background-color: rgb(176, 189, 34);
 }
