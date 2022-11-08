@@ -91,7 +91,7 @@ function Claimer() {
               )}{" "}
               PSP
             </span>{" "}
-            staked at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
+            staked in sPSP4 at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
           </h4>
         )}
 
@@ -134,7 +134,7 @@ function Claimer() {
               )}{" "}
               PSP
             </span>{" "}
-            staked at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
+            staked in sPSP10 at block <span className="info">{globalClaimData.BLOCK_NUMBER}</span>
           </h4>
         )}
       </div>
