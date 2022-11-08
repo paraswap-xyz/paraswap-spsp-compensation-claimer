@@ -99,7 +99,7 @@ export const useClaim = (claimData?: UserClaimData) => {
   return { data, isError, isLoading, write };
 };
 
-export const useBlockExploreLinkConstructors = () => {
+export const useBlockExplorerLinkConstructors = () => {
   const { chain } = useNetwork();
 
   return useMemo(() => {

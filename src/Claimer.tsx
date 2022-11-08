@@ -1,7 +1,7 @@
 import "./App.css";
 import { useAccount, useEnsName } from "wagmi";
 import {
-  useBlockExploreLinkConstructors,
+  useBlockExplorerLinkConstructors,
   useClaim,
   useClaimData,
   useIsClaimed,
@@ -21,7 +21,7 @@ function Claimer() {
   }, [claimData.data, address]);
   const claim = useClaim(userClaimData);
   const { constructTxExplorerLink, constructBlockExplorerLink } =
-    useBlockExploreLinkConstructors();
+    useBlockExplorerLinkConstructors();
   const isClaimedData = useIsClaimed(userClaimData?.index);
 
   if (claimData.isLoading || isClaimedData.isLoading)
