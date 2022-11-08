@@ -98,14 +98,6 @@ export const useClaim = (claimData?: UserClaimData) => {
   return { data, isError, isLoading, write };
 };
 
-export const useBlockExplorerTxLink = (txHash?: string) => {
-  const { chain } = useNetwork();
-  return useMemo(() => {
-    if (!txHash || !chain?.blockExplorers?.etherscan) return;
-    return `${chain.blockExplorers.etherscan.url}/tx/${txHash}`;
-  }, [txHash]);
-};
-
 export const useBlockExploreLinkConstructors = () => {
   const { chain } = useNetwork();
 
@@ -113,11 +105,11 @@ export const useBlockExploreLinkConstructors = () => {
     const baseUrl = chain?.blockExplorers?.etherscan?.url;
 
     return {
-      getTxExplorerLink: (txHash: string) => {
+      constructTxExplorerLink: (txHash: string) => {
         if (!baseUrl) return;
         return `${baseUrl}/tx/${txHash}`;
       },
-      getBlockExplorerLink: (blockNumOrHash: string | number) => {
+      constructBlockExplorerLink: (blockNumOrHash: string | number) => {
         if (!baseUrl) return;
         return `${baseUrl}/block/${blockNumOrHash}`;
       },

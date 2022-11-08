@@ -20,7 +20,7 @@ function Claimer() {
     );
   }, [claimData.data, address]);
   const claim = useClaim(userClaimData);
-  const { getTxExplorerLink, getBlockExplorerLink } =
+  const { constructTxExplorerLink, constructBlockExplorerLink } =
     useBlockExploreLinkConstructors();
   const isClaimedData = useIsClaimed(userClaimData?.index);
 
@@ -78,7 +78,7 @@ function Claimer() {
       {claim.data?.hash && (
         <h4>
           Follow transaction status on etherscan:{" "}
-          <a href={getTxExplorerLink(claim.data.hash)}>link</a>
+          <a href={constructTxExplorerLink(claim.data.hash)}>link</a>
         </h4>
       )}
       <div>
@@ -104,7 +104,7 @@ function Claimer() {
             </span>{" "}
             staked in sPSP4 at block{" "}
             <a
-              href={getBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
+              href={constructBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
               className="info"
             >
               {claimData.data.BLOCK_NUMBER}
@@ -153,7 +153,7 @@ function Claimer() {
             </span>{" "}
             staked in sPSP10 at block{" "}
             <a
-              href={getBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
+              href={constructBlockExplorerLink(claimData.data.BLOCK_NUMBER)}
               className="info"
             >
               {claimData.data.BLOCK_NUMBER}
