@@ -1,4 +1,4 @@
-# ParaSwapPool4 and ParaSwapPool10 epoch 24 compenstation rewards
+# ParaSwapPool4 and ParaSwapPool10 epoch 24 compensation rewards
 
 ## DAO Proposal
 Voted snapshot proposal: https://vote.paraswap.network/#/proposal/0x3850c6c5032d7feeba94ad2c017b998180a41b66229af741c722ae5941a2762e
