@@ -22,4 +22,4 @@ Note: same ipfs hash has been included in snaphsot and decentralised ui loads fi
 Contract has been deployed on ethereum mainnet at address **0xb7c74317fe4d0cabd414430d8253af087152a5f3**
 
 ## UI 
-Decentralised UI has been deployed on fleek from this code at https://claim-spsp-4-10-compensation.on.fleek.co or lastest immutable link https://ipfs.fleek.co/ipfs/QmVUyFtPM1KXGUfCiNrGF1bpbMcUrvKF7pb5yGFvN6ZqNG/
+Decentralised UI has been deployed on fleek from this code at https://claim-spsp-4-10-compensation.on.fleek.co or lastest immutable link https://ipfs.fleek.co/ipfs/QmWkMVMM9PitFmX6upTNjxEAo9U2tsnFRMG7btZDjBruVp
